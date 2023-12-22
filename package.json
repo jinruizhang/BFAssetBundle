@@ -15,7 +15,7 @@
       "email": "guozheng.cui@blowfires.com"
     },
     "publishConfig" : {
-      "registry" : "http://git.blowfires.com:8081/repository/UnityPackages/"
+      "registry" : "https://github.com/jinruizhang/BFAssetBundle.git"
     }
 }
   
