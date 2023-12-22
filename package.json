@@ -1,0 +1,21 @@
+{
+    "name": "com.blowfire.unity.assetbundle",
+    "version": "0.0.34",
+    "displayName": "Blowfire AssetBundle",
+    "description": "This is an asset bubble package",
+    "unity": "2018.3",
+    "unityRelease": "0f2",
+    "dependencies": {
+        "com.blowfire.unity.network": "0.3.2-preview"
+    },
+    "keywords": [
+    ],
+    "author": {
+      "name": "walter",
+      "email": "guozheng.cui@blowfires.com"
+    },
+    "publishConfig" : {
+      "registry" : "http://git.blowfires.com:8081/repository/UnityPackages/"
+    }
+}
+  

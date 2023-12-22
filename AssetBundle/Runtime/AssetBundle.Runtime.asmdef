@@ -1,0 +1,17 @@
+{
+    "name": "AssetBundle.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8779ef3628c7d4580bb2e8e2738bffb0",
+        "GUID:9069ac25d95ca17448a247f3bb1c769f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
