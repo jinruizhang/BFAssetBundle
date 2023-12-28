@@ -1,6 +1,6 @@
 {
     "name": "com.blowfire.unity.assetbundle",
-    "version": "0.0.39",
+    "version": "0.0.40",
     "displayName": "Blowfire AssetBundle",
     "description": "This is an asset bubble package",
     "unity": "2018.3",
