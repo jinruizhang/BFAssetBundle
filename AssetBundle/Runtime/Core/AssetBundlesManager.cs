@@ -94,7 +94,11 @@ namespace ResourceTools
         /// </summary>
         public static string RemoteUrl = string.Empty;
         
-        
+        /// <summary>
+        /// 常驻在内存中的ab
+        /// </summary>
+        public static HashSet<string> NoReleaseAssetBunldeList = new HashSet<string>();
+
         /// <summary>
         /// 资源更新Uri前缀，下载资源文件时会以 UpdateUriPrefix/BundleName 为下载地址
         /// </summary>
@@ -104,9 +108,21 @@ namespace ResourceTools
 
             set { ResourceToolsUpdater.UpdateUriPrefix = value; }
         }
+        /// <summary>
+        /// 将一个ab注册到不被卸载的set里面
+        /// </summary>
+        public static void RegisterUnReleaseAb(string abPath)
+        {
+            NoReleaseAssetBunldeList.Add(abPath);
+        }
+        /// <summary>
+        /// 判断一个ab是否可以被卸载
+        /// </summary>
+        public static bool IsUnReleaseAb(string abPath)
+        {
+            return NoReleaseAssetBunldeList.Contains(abPath);
+        }
 
-        
-        
         /// <summary>
         /// bundle 是否下载完成且加载到内存中
         /// </summary>
@@ -813,7 +829,7 @@ namespace ResourceTools
 
             if (!assetInfoDict.TryGetValue(sceneName, out AssetRuntimeInfo assetInfo))
             {
-                Debug.LogError("要卸载的Scene不在资源清单中 ：" + sceneName);
+                Debug.LogError("要卸载的Scene不在资源清单中：" + sceneName);
                 return;
             }
 
@@ -851,7 +867,7 @@ namespace ResourceTools
             //减少引用计数
             assetInfo.RefCount--;
 
-            if (assetInfo.RefCount == 0)
+            if (assetInfo.RefCount == 0 && !IsUnReleaseAb(bundleInfo.ManifestInfo.BundleName))
             {
                 //已经没人在使用这个Asset了
                 //从Bundle的 UsedAsset 中移除
@@ -865,7 +881,7 @@ namespace ResourceTools
         /// </summary>
         internal static void CheckBundleLifeCycle(BundleRuntimeInfo bundleInfo)
         {
-            if (bundleInfo.UsedAssets.Count == 0 && bundleInfo.DependencyCount == 0)
+            if (bundleInfo.UsedAssets.Count == 0 && bundleInfo.DependencyCount == 0 && !IsUnReleaseAb(bundleInfo.ManifestInfo.BundleName) )
             {
                 UnloadBundleTask task = new UnloadBundleTask(taskExcutor, bundleInfo.ManifestInfo.BundleName);
                 taskExcutor.AddTask(task);

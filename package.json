@@ -14,8 +14,6 @@
       "name": "walter",
       "email": "guozheng.cui@blowfires.com"
     },
-    "publishConfig" : {
-      "registry" : "https://github.com/jinruizhang/BFAssetBundle.git"
-    }
+   
 }
   
