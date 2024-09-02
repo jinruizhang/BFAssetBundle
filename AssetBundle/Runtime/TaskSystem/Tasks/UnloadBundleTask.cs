@@ -83,8 +83,12 @@ namespace ResourceTools
             bundleInfo.DependencyBundles.Clear();
 
             //卸载Bundle
-            bundleInfo.Bundle.Unload(true);
-            bundleInfo.Bundle = null;
+            //卸载Bundle
+            if (bundleInfo.Bundle != null)
+            {
+                bundleInfo.Bundle.Unload(true);
+                bundleInfo.Bundle = null;
+            }
 
             Debug.Log("已卸载Bundle:" + Name);
         }
